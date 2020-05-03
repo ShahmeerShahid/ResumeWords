@@ -1,0 +1,5 @@
+flask
+flask_restful
+requests
+bs4
+selenium

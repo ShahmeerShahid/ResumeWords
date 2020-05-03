@@ -1,6 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
+import requests
 import base64
 
 app = Flask(__name__)
@@ -19,11 +20,26 @@ class Keywords(Resource):
         '''
         parser = reqparse.RequestParser()
         decoded_url = base64.b64decode(url).decode()
-        print(decoded_url)
-        return decoded_url
+        scraper_url = None
+        if "indeed." in decoded_url:
+            scraper_url = f'http://indeed-service/job/{url}'
+                
+        # add support for more websites
+        if scraper_url == None:
+            return "Unsupported website", 400
 
+        job_data, status_code = self.scrape(scraper_url)
+        if status_code != 200:
+            return job_data, status_code
+        return job_data, status_code
+
+        
+    def scrape(self, service_url):
+        request = requests.get(service_url)
+        return request.text, request.status_code
+        
 
 api.add_resource(Keywords, '/keywords/<path:url>/<int:num_words>')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=80)

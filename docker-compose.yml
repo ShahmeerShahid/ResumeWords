@@ -2,5 +2,13 @@ version: '3'
 
 services:
     gateway-service:
-        build: ./gateway
+        build: ./gateway-service
+        volumes:
+            - ./gateway-service:/usr/src/app
+        ports:
+            - 5000:80
     
+    indeed-service:
+        build: ./indeed-service
+        volumes:
+            - ./indeed-service:/usr/src/app
