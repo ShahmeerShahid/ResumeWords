@@ -12,3 +12,9 @@ services:
         build: ./indeed-service
         volumes:
             - ./indeed-service:/usr/src/app
+    
+    model-service:
+        build: ./model-service
+        volumes:
+            - ./model-service:/usr/src/app
+

@@ -13,7 +13,7 @@ api = Api(app)
 class JobData(Resource):
     def get(self, url):
         '''
-        GET job title and job data of supplied indeed job
+        GET job title and job data of supplied indeed job page
         '''
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')

@@ -1,8 +1,9 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 import requests
 import base64
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -31,12 +32,14 @@ class Keywords(Resource):
         job_data, status_code = self.scrape(scraper_url)
         if status_code != 200:
             return job_data, status_code
-        return job_data, status_code
+        
+        model_request = requests.post("http://model-service/model/tfidf", json={"job": job_data, "num_words": num_words})
+        return json.loads(model_request.text), model_request.status_code
 
         
     def scrape(self, service_url):
         request = requests.get(service_url)
-        return request.text, request.status_code
+        return json.loads(request.text), request.status_code
         
 
 api.add_resource(Keywords, '/keywords/<path:url>/<int:num_words>')
