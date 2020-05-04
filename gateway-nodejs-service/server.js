@@ -27,7 +27,7 @@ app.get('/keywords/:url/:num_words', (req, clientRes) => {
     }
 
 
-    fetch(scraper_url) // TODO replace with scraper_url // Retrieve job data (title and description)
+    fetch(scraper_url) // Retrieve job data (title and description)
         .then(jobRes => {
             if (jobRes.ok) {
                 return jobRes.text(); 
