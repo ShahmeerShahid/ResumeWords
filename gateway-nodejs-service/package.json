@@ -1,0 +1,19 @@
+{
+    "name": "gateway-nodejs-service",
+    "version": "1.0.0",
+    "description": "Gateway service for the ResumeWords webapp",
+    "author": "Shahmeer Shahid and Lazar Lolic",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon index"
+    },
+    "dependencies": {
+        "express": "^4.16.1",
+        "node-fetch": "2.6.0",
+        "atob": "2.1.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.3"
+    }
+}

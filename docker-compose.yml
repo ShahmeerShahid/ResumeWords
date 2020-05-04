@@ -2,9 +2,11 @@ version: '3'
 
 services:
     gateway-service:
-        build: ./gateway-service
+        # build: ./gateway-service
+        build: ./gateway-nodejs-service
         volumes:
-            - ./gateway-service:/usr/src/app
+            # - ./gateway-service:/usr/src/app
+            - ./gateway-nodejs-service:/usr/src/app
         ports:
             - 5000:80
     

@@ -21,7 +21,7 @@ class JobData(Resource):
         options.add_argument('--disable-gpu')
         driver = webdriver.Chrome(chrome_options=options)
 
-        decoded_url = base64.b64decode(url).decode()
+        decoded_url = base64.urlsafe_b64decode(url).decode()
         parsed_url = urlparse.urlparse(decoded_url)
         url_params = parse_qs(parsed_url.query)
 
