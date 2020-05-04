@@ -14,7 +14,7 @@ A list of keywords and their corresponding TF/IDF scores:
 [
     {"scalable": 0.4},
     {"engineering": 0.347},
-    {"infrastructure": 0.274,},
+    {"infrastructure": 0.274},
     {"backend": 0.27}
 ]
 ```
