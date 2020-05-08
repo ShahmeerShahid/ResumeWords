@@ -1,7 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch')
 const atob = require('atob')
-
+// a
 const PORT = 80;
 const HOST = '0.0.0.0';
 
@@ -18,7 +18,7 @@ app.get('/keywords/:url/:num_words', (req, clientRes) => {
     var scraper_url = null;
 
     if (decoded_url.includes("indeed.")) {
-        scraper_url = 'http://indeed-service/job/'+url
+        scraper_url = 'http://indeed-service/job/' + url
     }
 
     if (scraper_url == null) {
@@ -30,7 +30,7 @@ app.get('/keywords/:url/:num_words', (req, clientRes) => {
     fetch(scraper_url) // Retrieve job data (title and description)
         .then(jobRes => {
             if (jobRes.ok) {
-                return jobRes.text(); 
+                return jobRes.text();
             } else if (jobRes.status == 404) {
                 throw new HTTPError("Job title and/or job description non existant on webpage", 404);
             } else if (jobRes.status == 500) {
@@ -40,10 +40,10 @@ app.get('/keywords/:url/:num_words', (req, clientRes) => {
         .then(jobData => { // Retrieve keywords from model with job data
             fetch("http://model-service/model/tfidf", {
                 method: 'post',
-                body: JSON.stringify({'job': jobData, 'num_words': num_words}),
-                headers: {'Content-Type': 'application/json'}
+                body: JSON.stringify({ 'job': jobData, 'num_words': num_words }),
+                headers: { 'Content-Type': 'application/json' }
             })
-            .then(modelRes => modelResponseHandler(clientRes, modelRes));
+                .then(modelRes => modelResponseHandler(clientRes, modelRes));
         })
         .catch((err) => {
             if (err instanceof HTTPError) {

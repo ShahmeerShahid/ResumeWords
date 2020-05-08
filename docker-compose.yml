@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
     gateway-service:
@@ -7,16 +7,16 @@ services:
         volumes:
             # - ./gateway-service:/usr/src/app
             - ./gateway-nodejs-service:/usr/src/app
+            - /usr/src/app/node_modules
         ports:
             - 5000:80
-    
+
     indeed-service:
         build: ./indeed-service
         volumes:
             - ./indeed-service:/usr/src/app
-    
+
     model-service:
         build: ./model-service
         volumes:
             - ./model-service:/usr/src/app
-
