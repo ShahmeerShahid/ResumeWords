@@ -16,4 +16,7 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 # set display port to avoid crash
 ENV DISPLAY=:99
 
-CMD ["python", "app.py"]
+RUN pip install -r requirements.txt
+
+
+CMD ["uwsgi", "config.ini"]

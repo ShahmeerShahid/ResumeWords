@@ -1,3 +1,4 @@
 FROM python:3-onbuild
 COPY . /usr/src/app
-CMD ["python", "app.py"]
+RUN pip install -r requirements.txt
+CMD ["uwsgi", "config.ini"]
