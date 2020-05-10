@@ -1,6 +1,7 @@
 const express = require('express');
-const fetch = require('node-fetch')
-const atob = require('atob')
+const fetch = require('node-fetch');
+const cors = require('cors')
+
 // a
 const PORT = 80;
 const HOST = '0.0.0.0';
@@ -11,10 +12,12 @@ app.get('/', function (req, res) {
     res.send("Hello world!");
 });
 
-app.get('/keywords/:url/:num_words', (req, clientRes) => {
-    var url = req.params.url;
+app.get('/keywords/:url/:num_words', cors(), (req, clientRes) => {
+    const decoded_url = req.params.url;
+    const url = encodeURIComponent(decoded_url);
     var num_words = req.params.num_words;
-    var decoded_url = atob(url); // base64 decode
+    console.log("Encoded url: " + url);
+    console.log("Decoded url: " + decoded_url);
     var scraper_url = null;
 
     if (decoded_url.includes("indeed.")) {
@@ -26,11 +29,13 @@ app.get('/keywords/:url/:num_words', (req, clientRes) => {
         return;
     }
 
-
+    console.log(scraper_url);
     fetch(scraper_url) // Retrieve job data (title and description)
         .then(jobRes => {
             if (jobRes.ok) {
                 return jobRes.text();
+            } else if (jobRes.status == 400) {
+                throw new HTTPError("URL not supported", 400);
             } else if (jobRes.status == 404) {
                 throw new HTTPError("Job title and/or job description non existant on webpage", 404);
             } else if (jobRes.status == 500) {

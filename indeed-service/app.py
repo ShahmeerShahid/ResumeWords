@@ -4,7 +4,7 @@ import base64
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import urllib.parse as urlparse
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, unquote
 
 app = Flask(__name__)
 api = Api(app)
@@ -15,13 +15,15 @@ class JobData(Resource):
         '''
         GET job title and job data of supplied indeed job page
         '''
+        print('Indeed service received encoded URL: ' + url)
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
         driver = webdriver.Chrome(chrome_options=options)
 
-        decoded_url = base64.urlsafe_b64decode(url).decode()
+        decoded_url = unquote(url)
+        print('Decoded URL: ' + decoded_url)
         parsed_url = urlparse.urlparse(decoded_url)
         url_params = parse_qs(parsed_url.query)
 
