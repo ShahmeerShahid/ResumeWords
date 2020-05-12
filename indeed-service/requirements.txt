@@ -4,4 +4,3 @@ requests
 bs4
 selenium
 uwsgi
-os

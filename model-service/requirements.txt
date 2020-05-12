@@ -4,4 +4,3 @@ flask
 flask_restful
 flask_cors
 uwsgi
-os
