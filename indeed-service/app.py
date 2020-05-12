@@ -1,14 +1,15 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
-import base64
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import urllib.parse as urlparse
 from urllib.parse import parse_qs, unquote
+import os
 
 app = Flask(__name__)
 api = Api(app)
 
+PORT = int(os.getenv('PORT', '8080'))
 
 class JobData(Resource):
     def get(self, url):
@@ -53,4 +54,4 @@ class JobData(Resource):
 api.add_resource(JobData, '/job/<path:url>')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=PORT)

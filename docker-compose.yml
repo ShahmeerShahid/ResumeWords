@@ -9,7 +9,7 @@ services:
             - ./gateway-nodejs-service:/usr/src/app
             - /usr/src/app/node_modules
         ports:
-            - 5000:80
+            - 5000:8080
 
     indeed-service:
         build: ./indeed-service
