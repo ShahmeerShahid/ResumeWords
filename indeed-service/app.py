@@ -16,6 +16,7 @@ class JobData(Resource):
         '''
         GET job title and job data of supplied indeed job page
         '''
+        
         print('Indeed service received encoded URL: ' + url)
         options = webdriver.ChromeOptions()
         options.add_argument('--no-sandbox')

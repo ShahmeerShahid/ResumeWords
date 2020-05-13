@@ -2,7 +2,6 @@ const express = require("express");
 const fetch = require("node-fetch");
 const cors = require("cors");
 
-// a
 const PORT = process.env.PORT || 8080;
 const HOST = "0.0.0.0";
 const indeed_host = process.env.INDEED || "http://indeed-service:8080";
