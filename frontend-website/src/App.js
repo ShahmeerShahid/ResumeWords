@@ -38,7 +38,7 @@ const indeedLink =
 const glassdoorLink = "";
 const googlecareersLink = "";
 const linkedinLink = "";
-const APIgateway = "http://localhost:5000";
+const APIgateway = "https://gateway-service-fvwxmbq4sq-ue.a.run.app";
 
 function newTab(url) {
   window.open(url, "_blank");
