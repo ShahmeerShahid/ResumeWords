@@ -1,0 +1,6 @@
+flask
+flask_restful
+flask_cors
+requests
+json
+uwsgi
