@@ -1,6 +1,6 @@
 steps:
   - name: "ubuntu"
-    args: ["ls", "&&", "pwd"]
+    args: ["pwd"]
   # build the container image
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/$PROJECT_ID/gateway-service:$COMMIT_SHA", "."]
