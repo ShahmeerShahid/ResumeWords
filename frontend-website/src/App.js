@@ -50,11 +50,8 @@ class App extends React.Component {
     } else {
       this.setState({ results: {} });
       var url = this.state.url;
-      console.log(url);
       var encoded_url = encodeURIComponent(url);
-      console.log(encoded_url);
       const request = "/keywords/" + encoded_url + "/10";
-      console.log("Request: " + APIgateway + request);
       this.setState({ loading: true });
       fetch(APIgateway + request) // APIgateway + request
         .then((res) => {
@@ -78,7 +75,6 @@ class App extends React.Component {
   }
 
   handleLinkClick(e) {
-    console.log(e.target.innerHTML.trim());
     switch (e.target.innerHTML.trim()) {
       case "Indeed":
         this.setState({ url: indeedLink });
@@ -146,7 +142,13 @@ class App extends React.Component {
               {this.state.results != {} ? (
                 <List dense={true}>
                   {Object.keys(this.state.results).map((key, i) => (
-                    <ListItem button>
+                    <ListItem
+                      button
+                      key={key}
+                      onClick={(event) => {
+                        newTab("https://www.thesaurus.com/browse/" + key);
+                      }}
+                    >
                       <ListItemText
                         primary={key.capitalize()}
                         secondary={
