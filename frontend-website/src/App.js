@@ -38,6 +38,7 @@ class App extends React.Component {
       url: "",
       loading: false,
       results: {},
+      error: "",
     };
     this.buttonClickHandler = this.buttonClickHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -46,9 +47,9 @@ class App extends React.Component {
 
   buttonClickHandler(e) {
     if (this.state.url == "") {
-      document.getElementById("error").innerHTML = "Please enter a URL.";
+      this.setState({ error: "Please enter a URL" });
     } else {
-      this.setState({ results: {} });
+      this.setState({ results: {}, error: "" });
       var url = this.state.url;
       var encoded_url = encodeURIComponent(url);
       const request = "/keywords/" + encoded_url + "/10";
@@ -136,7 +137,7 @@ class App extends React.Component {
             )}{" "}
             <br /> <br />
             <Typography id="error" component="h5" color="error">
-              {" "}
+              {this.state.error}
             </Typography>
             <div id="results">
               {this.state.results != {} ? (
