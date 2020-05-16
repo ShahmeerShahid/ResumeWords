@@ -7,34 +7,17 @@ import {
   TextField,
   Container,
   CircularProgress,
+  List,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+import { AnimatedList } from "react-animated-list";
 
 var URLSafeBase64 = require("urlsafe-base64");
 
 // add links as we add support
 const indeedLink =
-  "https://ca.indeed.com/jobs?q=software%20developer&l=Toronto%2C%20ON&radius=25&ts=1588911978357&rq=1&rsIdx=0&vjk=53a4df7deb71fecf&advn=209420522549189";
+  "https://ca.indeed.com/viewjob?jk=8b4d91c8af8bb0e0&tk=1e8e4ut16584q800&from=serp&vjs=3&advn=3565145538192372&adid=254279523&sjdu=i6xVERweJM_pVUvgf-MzuSNjPrzy7_LNnt0n8OvPVhl69iaJUOxN_OOj2lFqvl9K";
 const glassdoorLink = "";
 const googlecareersLink = "";
 const linkedinLink = "";
@@ -44,12 +27,18 @@ function newTab(url) {
   window.open(url, "_blank");
 }
 
+String.prototype.capitalize = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       url: "",
       loading: false,
+      results: {},
+      error: "",
     };
     this.buttonClickHandler = this.buttonClickHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -58,14 +47,12 @@ class App extends React.Component {
 
   buttonClickHandler(e) {
     if (this.state.url == "") {
-      document.getElementById("error").innerHTML = "Please enter a URL.";
+      this.setState({ error: "Please enter a URL" });
     } else {
+      this.setState({ results: {}, error: "" });
       var url = this.state.url;
-      console.log(url);
       var encoded_url = encodeURIComponent(url);
-      console.log(encoded_url);
       const request = "/keywords/" + encoded_url + "/10";
-      console.log("Request: " + APIgateway + request);
       this.setState({ loading: true });
       fetch(APIgateway + request) // APIgateway + request
         .then((res) => {
@@ -74,7 +61,8 @@ class App extends React.Component {
         })
         .then((data) => {
           console.log(data);
-          document.getElementById("results").innerHTML = JSON.stringify(data);
+          // document.getElementById("results").innerHTML = JSON.stringify(data);
+          this.setState({ results: data });
         })
         .catch((err) => {
           this.setState({ loading: false });
@@ -88,7 +76,6 @@ class App extends React.Component {
   }
 
   handleLinkClick(e) {
-    console.log(e.target.innerHTML.trim());
     switch (e.target.innerHTML.trim()) {
       case "Indeed":
         this.setState({ url: indeedLink });
@@ -150,9 +137,31 @@ class App extends React.Component {
             )}{" "}
             <br /> <br />
             <Typography id="error" component="h5" color="error">
-              {" "}
+              {this.state.error}
             </Typography>
-            <div id="results"> </div> <br /> <br />
+            <div id="results">
+              {this.state.results != {} ? (
+                <List dense={true}>
+                  {Object.keys(this.state.results).map((key, i) => (
+                    <ListItem
+                      button
+                      key={key}
+                      onClick={(event) => {
+                        newTab("https://www.thesaurus.com/browse/" + key);
+                      }}
+                    >
+                      <ListItemText
+                        primary={key.capitalize()}
+                        secondary={
+                          "Score: " + Object.values(this.state.results)[i]
+                        }
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              ) : null}
+            </div>{" "}
+            <br /> <br />
             <Typography id="examples" component="h1" variant="h5">
               {" "}
               Example Links:{" "}
