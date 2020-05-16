@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f3e51029371a92c8263023d9913bf268",
+    "revision": "47be52e5d91aa6a68e9000b803252c30",
     "url": "/ResumeWords/index.html"
   },
   {
-    "revision": "6a67fb875d26a887675d",
+    "revision": "29a2c38c6b0189be7173",
     "url": "/ResumeWords/static/css/main.8ab6f918.chunk.css"
   },
   {
-    "revision": "b116e381d41118026a5b",
-    "url": "/ResumeWords/static/js/2.289eee99.chunk.js"
+    "revision": "88596bcce5e867bfadac",
+    "url": "/ResumeWords/static/js/2.156bb097.chunk.js"
   },
   {
-    "revision": "95c85eda1a6bdffc5b337e6242a5bd6c",
-    "url": "/ResumeWords/static/js/2.289eee99.chunk.js.LICENSE.txt"
+    "revision": "96a0b9fa46e025b031409dc1dc1020c6",
+    "url": "/ResumeWords/static/js/2.156bb097.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6a67fb875d26a887675d",
-    "url": "/ResumeWords/static/js/main.4553753d.chunk.js"
+    "revision": "29a2c38c6b0189be7173",
+    "url": "/ResumeWords/static/js/main.0095daa7.chunk.js"
   },
   {
     "revision": "b6cd61dda8e21bb560ef",
