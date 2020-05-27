@@ -50,7 +50,7 @@ class App extends React.Component {
             this.setState({ results: {}, error: "" });
             var url = this.state.url;
             var encoded_url = encodeURIComponent(url);
-            const request = "/keywords/" + encoded_url + "/10";
+            const request = "/keywords/" + encoded_url + "/50";
             this.setState({ loading: true });
             fetch(APIgateway + request) // APIgateway + request
                 .then((res) => {
