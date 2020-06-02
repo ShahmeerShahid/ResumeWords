@@ -1,0 +1,13 @@
+{
+    "name": "ResumeWords",
+    "version": "1.0",
+    "description": "Generate keywords from job descriptions",
+    "manifest_version": 2,
+    "icons": { "100": "icons8-resume-100.png" },
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_title": "ResumeWords"
+    },
+    "permissions": ["tabs", "activeTab"],
+    "content_security_policy": "script-src 'self' 'sha256-V/iEy/JDsKiWnn/Sob0oSf4ctpuI27zHmLnLyOfgQ58='; object-src 'self'"
+}
