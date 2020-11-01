@@ -5,7 +5,7 @@
 ### Keywords
 
 **Definition**
-`GET /keywords/{URL-safe base64 encoded URL}/{number of keywords}`
+`GET /keywords/{URLiencoded URL of job posting}/{number of keywords}`
 
 **Response**
 - `200 OK` on success
