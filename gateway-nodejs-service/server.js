@@ -63,23 +63,6 @@ app.get("/keywords/:url/:num_words", cors(), async (req, clientRes) => {
     return;
 });
 
-function modelResponseHandler(clientRes, modelRes) {
-    if (modelRes.status == 500) {
-        throw new HTTPError("Internal error in model service");
-    }
-    modelRes.json().then((keywords) => {
-        clientRes.json(keywords);
-        return;
-    });
-}
-
-class HTTPError extends Error {
-    constructor(message, status) {
-        super(message);
-        this.status = status;
-    }
-}
-
 app.listen(PORT, () =>
     console.log(`gateway-nodejs service running on port ${PORT}`)
 );
