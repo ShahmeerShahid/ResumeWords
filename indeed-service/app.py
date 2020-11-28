@@ -42,7 +42,7 @@ class JobData(Resource):
         if not (job_description_div and job_title_div):
             return "Job title or description not found in page", 404
 
-        job_description = job_description_div.get_text(seperator=" ")
+        job_description = job_description_div.get_text()
         job_title = job_title_div.get_text()
 
         return job_title + " " + job_description, 200

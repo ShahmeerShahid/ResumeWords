@@ -13,7 +13,7 @@ app.get("/", function (req, res) {
     res.send("Hello world!");
 });
 
-app.get("/keywords/:url/:num_words", cors(), (req, clientRes) => {
+app.get("/keywords/:url/:num_words", cors(), async (req, clientRes) => {
     const decoded_url = req.params.url;
     const url = encodeURIComponent(decoded_url);
     var num_words = req.params.num_words;
@@ -33,42 +33,34 @@ app.get("/keywords/:url/:num_words", cors(), (req, clientRes) => {
     }
 
     console.log(scraper_url);
-    fetch(scraper_url) // Retrieve job data (title and description)
-        .then((jobRes) => {
-            if (jobRes.ok) {
-                return jobRes.text();
-            } else if (jobRes.status == 400) {
-                throw new HTTPError("URL not supported", 400);
-            } else if (jobRes.status == 404) {
-                throw new HTTPError(
-                    "Job title and/or job description non existant on webpage",
-                    404
-                );
-            } else if (jobRes.status == 500) {
-                throw new HTTPError("Internal error in jobboard service", 500);
-            }
-        })
-        .then((jobData) => {
-            // Retrieve keywords from model with job data
-            fetch(model_host + "/model/tfidf", {
-                method: "post",
-                body: JSON.stringify({ job: jobData, num_words: num_words }),
-                headers: { "Content-Type": "application/json" },
-            }).then((modelRes) => modelResponseHandler(clientRes, modelRes));
-        })
-        .catch((err) => {
-            if (err instanceof HTTPError) {
-                clientRes.status(err.status).send(err.message);
-            } else {
-                clientRes
-                    .status(500)
-                    .send(
-                        "Internal server error in gateway service: " +
-                            err.message
-                    );
-                throw err;
-            }
-        });
+    const jobRes = await fetch(scraper_url);
+    if (jobRes.status == 400) {
+        clientRes.status(400).send("URL not supported");
+        return;
+    }
+    if (jobRes.status == 404) {
+        clientRes.status(404).send("Job title and/or job description non existant on webpage");
+        return;
+    }
+    if (jobRes.status == 500) {
+        clientRes.status(500).send("Internal error in jobboard service");
+        return;
+    }
+
+    const jobData = await jobRes.text();
+    const modelRes = await fetch(model_host + "/model/tfidf", {
+        method: "post",
+        body: JSON.stringify({ job: jobData, num_words: num_words }),
+        headers: { "Content-Type": "application/json" },
+    })
+    if (modelRes.status == 500) {
+        clientRes.status(500).send("Internal error in model service");
+        return;
+    }
+
+    const keywords = await modelRes.json();
+    clientRes.json(keywords);
+    return;
 });
 
 function modelResponseHandler(clientRes, modelRes) {
