@@ -5,7 +5,7 @@
 ### Job Data
 
 **Definition**
-`GET /job/{base64 encoded URL}`
+`GET /job/{URLencoded URL}`
 
 **Response**
 - `200 OK` on success

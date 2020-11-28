@@ -18,9 +18,9 @@ class JobData(Resource):
         GET job title and job data of supplied indeed job page
         """
 
-        print("Indeed service received encoded URL: " + url)
+        print("Indeed service received encoded URL: " + url, flush=True)
         decoded_url = unquote(url)
-        print("Decoded URL: " + decoded_url)
+        print("Decoded URL: " + decoded_url, flush=True)
         parsed_url = urlparse.urlparse(decoded_url)
         url_params = parse_qs(parsed_url.query)
 
@@ -30,27 +30,20 @@ class JobData(Resource):
             jk = url_params["jk"][0]
         else:
             jk = url_params["vjk"][0]
+        print("Job code:", jk)
         url = "https://www.indeed.com/viewjob?" + "jk=" + jk
 
         r = requests.get(url).content
         soup = BeautifulSoup(r, "html.parser")
 
-        # Check if both job description and job title exist in page
-        if not soup.find(
-            "h3",
-            {
-                "class": "icl-u-xs-mb--xs icl-u-xs-mt--none jobsearch-JobInfoHeader-title"
-            },
-        ) or not soup.find(id="jobDescriptionText"):
+        job_description_div = soup.find(id="jobDescriptionText")
+        job_title_div = soup.select_one(".jobsearch-JobInfoHeader-title")
+
+        if not (job_description_div and job_title_div):
             return "Job title or description not found in page", 404
 
-        job_title = soup.find(
-            "h3",
-            {
-                "class": "icl-u-xs-mb--xs icl-u-xs-mt--none jobsearch-JobInfoHeader-title"
-            },
-        ).contents[0]
-        job_description = soup.find(id="jobDescriptionText").get_text(separator=" ")
+        job_description = job_description_div.get_text(seperator=" ")
+        job_title = job_title_div.get_text()
 
         return job_title + " " + job_description, 200
 
