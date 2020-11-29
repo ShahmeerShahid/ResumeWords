@@ -44,10 +44,14 @@ class JobData(Resource):
         soup = BeautifulSoup(r, "html.parser")
 
         job_description_div = soup.select_one('#JobDescription')
+        if not job_description_div:
+            job_description_div = soup.select_one("#main-content > div > div > div > div.container.job-body-container > div > div.job-description.col-md-8.col-sm-12.order-2.order-sm-2.order-md-1")
+
         job_title_div = soup.select_one("#JobViewHeader > header > div > h1")
+        if not job_title_div:
+            job_title_div = soup.select_one("#main-content > div > div > div > div.heading.bg-white.container > div.title-banner.container > div > div.job_company_titlebar.col-md-9 > div.header-text-block > h1")
         
         if not (job_description_div and job_title_div):
-            print(job_description_div, job_title_div)
             return "Job title or description not found in page", 404
 
         job_description = job_description_div.get_text()
