@@ -40,7 +40,7 @@ function UserInput({
 			<InputGroup size="lg">
 				<Input
 					pr="6rem"
-					placeholder="Link to job"
+					placeholder="Link to job posting"
 					value={url}
 					onChange={(e) => setFieldValue("url", e.target.value)}
 				/>
