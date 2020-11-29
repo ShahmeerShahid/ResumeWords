@@ -30,6 +30,15 @@ services:
         environment:
             - PORT=8080
 
+    monster-service:
+        build: ./monster-service
+        volumes:
+            - ./monster-service:/usr/src/app
+        ports:
+            - 5003:8080
+        environment:
+            - PORT=8080
+
     model-service:
         build: ./model-service
         volumes:
