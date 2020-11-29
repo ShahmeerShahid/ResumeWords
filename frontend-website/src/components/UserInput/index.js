@@ -10,6 +10,7 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Spinner,
   Stack,
   Text,
 } from "@chakra-ui/react";
@@ -18,6 +19,7 @@ import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 function UserInput({
   url,
   num_words,
+  isLoading,
   errors,
   handleSubmit,
   setFieldValue,
@@ -53,7 +55,7 @@ function UserInput({
       <FormLabel># of keywords:</FormLabel>
       <Stack mt={4} direction="row" spacing="12px" justify="center">
         <NumberInput
-          width="90%"
+          width="75%"
           min={0}
           max={50}
           value={num_words}
@@ -65,8 +67,13 @@ function UserInput({
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <Button colorScheme="green" onClick={handleSubmit}>
-          Submit
+        <Button
+          colorScheme="green"
+          onClick={handleSubmit}
+          w="25%"
+          disabled={isLoading}
+        >
+          {!isLoading ? "Submit" : <Spinner size="md" />}
         </Button>
       </Stack>
       <Text style={{ color: "red" }}>{errors && errors.url}</Text>

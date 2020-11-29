@@ -1,20 +1,25 @@
 import React from "react";
 import { Button, ButtonGroup, Text } from "@chakra-ui/react";
+import { AiFillLinkedin } from "react-icons/ai";
+import { SiIndeed, SiMonster } from "react-icons/si";
 
 const buttonWidth = "170px";
 
 const exampleButtons = [
   {
     name: "LinkedIn",
-    link: "https://www.linkedin.com/jobs/view/1824287174",
+    logo: AiFillLinkedin,
+    link: "https://www.linkedin.com/jobs/view/2320257000",
   },
   {
     name: "Indeed",
+    logo: SiIndeed,
     link:
       "https://ca.indeed.com/viewjob?jk=8b4d91c8af8bb0e0&tk=1e8e4ut16584q800&from=serp&vjs=3&advn=3565145538192372&adid=254279523&sjdu=i6xVERweJM_pVUvgf-MzuSNjPrzy7_LNnt0n8OvPVhl69iaJUOxN_OOj2lFqvl9K",
   },
   {
     name: "Monster",
+    logo: SiMonster,
     link: "",
   },
 ];
@@ -41,7 +46,7 @@ function ExampleLinks({ setFieldValue }) {
               newTab(button.link);
             }}
           >
-            {button.name}
+            <button.logo /> {button.name}
           </Button>
         ))}
       </ButtonGroup>

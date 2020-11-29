@@ -6,8 +6,10 @@ import * as Yup from "yup";
 import { Header, Footer } from "./components/HeaderAndFooter";
 import ExampleLinks from "./components/ExampleLinks";
 import UserInput from "./components/UserInput";
-import { getResults } from "./requests";
+import ResultsList from "./components/ResultsList";
 import "./App.css";
+
+const APIgateway = "https://gateway-service-fvwxmbq4sq-ue.a.run.app";
 
 const ERR_MSGS = {
   urlMissing: "URL is required",
@@ -58,11 +60,13 @@ function UnconnectedApp({
                 <UserInput
                   url={url}
                   num_words={num_words}
+                  isLoading={values.isLoading}
                   errors={errors}
                   handleSubmit={handleSubmit}
                   setFieldValue={setFieldValue}
                   validateURL={validateURL}
                 />
+                <ResultsList results={values.results} />
                 <ExampleLinks setFieldValue={setFieldValue} />
                 <Footer />
               </Box>
@@ -76,13 +80,32 @@ function UnconnectedApp({
 
 export const EnhancedApp = withFormik({
   enableReinitialize: true,
-  handleSubmit: async ({ url, num_words }) => {
-    const response = await getResults(url, num_words);
-    console.log(response);
+  handleSubmit: async ({ url, num_words }, { setFieldValue }) => {
+    setFieldValue("isLoading", true);
+    var encoded_url = encodeURIComponent(url);
+    const request = `/keywords/${encoded_url}/${num_words}`;
+    fetch(APIgateway + request) // APIgateway + request
+      .then((res) => {
+        setFieldValue("isLoading", false);
+        return res.json();
+      })
+      .then((data) => {
+        setFieldValue("results", data);
+      })
+      .catch((e) => {
+        setFieldValue("isLoading", false);
+        return {
+          error: true,
+          status: e.response && e.response.status,
+          message: e.response && e.response.data,
+        };
+      });
   },
   mapPropsToValues: (props) => ({
     url: "",
     num_words: 0,
+    results: [],
+    isLoading: false,
   }),
   validationSchema: () => Schema,
   validateOnBlur: false,
