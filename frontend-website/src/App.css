@@ -1,3 +1,7 @@
 .app {
   height: 0vw;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
 }

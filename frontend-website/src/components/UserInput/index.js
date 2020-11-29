@@ -35,42 +35,43 @@ function UserInput({
   }
 
   return (
-    <div style={{ paddingTop: "2vw" }}>
-      <FormLabel>URL:</FormLabel>
-      <InputGroup size="lg">
-        <Input
-          pr="6rem"
-          placeholder="http://linkedin.com"
-          value={url}
-          onChange={(e) => setFieldValue("url", e.target.value)}
-        />
-        <InputRightElement
-          style={{ paddingLeft: "7vw" }}
-          width="7rem"
-          children={renderURLValidationIcon()}
-        />
-      </InputGroup>
-      <FormLabel># of keywords:</FormLabel>
-      <Stack mt={4} direction="row" spacing="12px" justify="center">
-        <NumberInput
-          width="90%"
-          min={0}
-          max={50}
+		<div style={{ paddingTop: "2vw" }}>
+			<FormLabel>URL:</FormLabel>
+			<InputGroup size="lg">
+				<Input
+					pr="6rem"
+					placeholder="Link to job"
+					value={url}
+					onChange={(e) => setFieldValue("url", e.target.value)}
+				/>
+				<InputRightElement
+					style={{ paddingLeft: "7vw" }}
+					width="7rem"
+					children={renderURLValidationIcon()}
+				/>
+			</InputGroup>
+			<br></br>
+			<FormLabel># of keywords:</FormLabel>
+			<Stack mt={4} direction="row" spacing="12px" justify="center">
+				<NumberInput
+					width="90%"
+					min={0}
+					max={50}
           value={num_words}
-          onChange={(value) => setFieldValue("num_words", value)}
-        >
-          <NumberInputField />
-          <NumberInputStepper>
-            <NumberIncrementStepper />
-            <NumberDecrementStepper />
-          </NumberInputStepper>
-        </NumberInput>
-        <Button colorScheme="green" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Stack>
-      <Text style={{ color: "red" }}>{errors && errors.url}</Text>
-    </div>
+					onChange={(value) => setFieldValue("num_words", value)}
+				>
+					<NumberInputField />
+					<NumberInputStepper>
+						<NumberIncrementStepper />
+						<NumberDecrementStepper />
+					</NumberInputStepper>
+				</NumberInput>
+				<Button colorScheme="green" onClick={handleSubmit}>
+					Submit
+				</Button>
+			</Stack>
+			<Text style={{ color: "red" }}>{errors && errors.url}</Text>
+		</div>
   );
 }
 

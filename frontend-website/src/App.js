@@ -49,7 +49,7 @@ function UnconnectedApp({
 		main: {
 			display: "flex",
 			justifyContent: "center",
-			width: "auto",
+			// width: "auto",
 			// width:"760px"
 			// height: "100vh",
 			// top: "0",
@@ -71,7 +71,12 @@ function UnconnectedApp({
 					pb={{ base: "0", md: "5rem" }}
 					width="100vw"
 				>
-					<Box textAlign="center" display="flex" flexDirection="column">
+					<Box
+						textAlign="center"
+						display="flex"
+						flexDirection="column"
+						id="centerBox"
+					>
 						<Header />
 						<UserInput
 							url={url}
@@ -100,7 +105,7 @@ export const EnhancedApp = withFormik({
 	},
 	mapPropsToValues: (props) => ({
 		url: "",
-		num_words: 0,
+		num_words: 10,
 	}),
 	validationSchema: () => Schema,
 	validateOnBlur: false,

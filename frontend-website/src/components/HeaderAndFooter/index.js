@@ -44,42 +44,49 @@ export function Footer() {
   ];
 
   return (
-    <>
-      <Box as="footer" mt={12} textAlign="center" className="app">
-        <Text fontSize="sm">
-          Made with{" "}
-          <span aria-label="heart" role="img">
-            &#128153;
-          </span>{" "}
-          by{" "}
-          <Link href="https://ca.linkedin.com/in/shahmeer-shahid" isExternal>
-            Shahmeer Shahid
-          </Link>
-          ,{" "}
-          <Link href="https://github.com/llolic" isExternal>
-            Lazar Lolic
-          </Link>
-          , &{" "}
-          <Link href="http://jarrodservilla.com" isExternal>
-            Jarrod Servilla
-          </Link>
-        </Text>
-        <Stack mt={4} direction="row" spacing="12px" justify="center">
-          {links.map((link, index) => {
-            return (
-              <Link
-                key={index}
-                display="inline-block"
-                href={link.url}
+		<>
+			<Box as="footer" mt={12} height="100%" textAlign="center" className="app">
+				<Text fontSize="sm">
+					Made with{" "}
+					<span aria-label="heart" role="img">
+						&#128153;
+					</span>{" "}
+					by{" "}
+					<Link
+						href="https://ca.linkedin.com/in/shahmeer-shahid"
+						isExternal
+					>
+						Shahmeer Shahid
+					</Link>
+					,{" "}
+					<Link href="https://github.com/llolic" isExternal>
+						Lazar Lolic
+					</Link>
+					, &{" "}
+					<Link href="http://jarrodservilla.com" isExternal>
+						Jarrod Servilla
+					</Link>
+				</Text>
+				<Stack mt={4} direction="row" spacing="12px" justify="center" mb={10}>
+					{links.map((link, index) => {
+						return (
+							<Link
+								key={index}
+								display="inline-block"
+								href={link.url}
                 aria-label={link.label}
-                isExternal
-              >
-                <Icon as={link.icon} fontSize="xl" color="gray.400" />
-              </Link>
-            );
-          })}
-        </Stack>
-      </Box>
-    </>
+								isExternal
+							>
+								<Icon
+									as={link.icon}
+									fontSize="xl"
+									color="gray.400"
+								/>
+							</Link>
+						);
+					})}
+				</Stack>
+			</Box>
+		</>
   );
 }
