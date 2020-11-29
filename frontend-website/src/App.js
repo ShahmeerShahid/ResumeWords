@@ -37,10 +37,11 @@ function UnconnectedApp({ errors, handleSubmit, setFieldValue, values }) {
   }
 
   let styles = {
-    main: {
-      display: "flex",
-      justifyContent: "center",
-    },
+		main: {
+			display: "flex",
+			justifyContent: "center",
+			width: "100vw",
+		},
   };
 
   return (
