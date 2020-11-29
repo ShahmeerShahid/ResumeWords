@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, ChakraProvider } from "@chakra-ui/react";
 import { withFormik } from "formik";
-import { SnackbarProvider } from "notistack";
 import * as Yup from "yup";
 import { Header, Footer } from "./components/HeaderAndFooter";
 import ExampleLinks from "./components/ExampleLinks";
@@ -123,9 +122,7 @@ export const EnhancedApp = withFormik({
 function App() {
   return (
     <ChakraProvider>
-      <SnackbarProvider>
-        <EnhancedApp />
-      </SnackbarProvider>
+      <EnhancedApp />
     </ChakraProvider>
   );
 }

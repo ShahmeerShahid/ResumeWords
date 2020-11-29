@@ -47,8 +47,9 @@ function UserInput({
         duration: 3000,
         isClosable: true,
       });
+      setFieldValue("asyncError", null);
     }
-  }, [asyncError, toast]);
+  }, [asyncError, setFieldValue, toast]);
   return (
     <div style={{ paddingTop: "2vw" }}>
       <FormLabel>URL:</FormLabel>
