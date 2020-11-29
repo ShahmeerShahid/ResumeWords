@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Divider,
   Icon,
   Link,
   Stack,
@@ -18,7 +17,6 @@ export function Header() {
         fontSize={{ base: "2.25rem", sm: "3rem", lg: "3.75rem" }}
         letterSpacing="tight"
         fontWeight="bold"
-        mb="16px"
         lineHeight="1.2"
       >
         Resume
@@ -26,16 +24,23 @@ export function Header() {
           Words
         </Box>
       </chakra.h1>
-      <Divider />
-      <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="6">
-        ResumeWords analyzes job descriptions using machine learning & informs
-        you of keywords you should include in your resume or cover letter when
-        applying!
+      <Text opacity={0.5} fontSize={{ base: "sm", lg: "md" }}>
+        AI powered keyword extraction
       </Text>
-      <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="6">
-        Paste the URL below, click "Submit", and wait for the results. Make sure
-        to include those words in your resume or cover letter!
-      </Text>
+      <Box p={5} shadow="md" borderWidth="1px" mt="6">
+        <Text opacity={0.8} fontSize={{ base: "lg", lg: "xl" }}>
+          <Text as="strong">Resume</Text>
+          <Box as="span" color={useColorModeValue("teal.500", "teal.300")}>
+            Words
+          </Box>{" "}
+          analyzes job descriptions using machine learning & informs you of
+          keywords you should include in your resume or cover letter when
+          applying.
+        </Text>
+        <Text opacity={0.8} fontSize={{ base: "lg", lg: "xl" }} mt="6">
+          Paste the URL below, click "Submit", and wait for the results!
+        </Text>
+      </Box>
     </>
   );
 }
