@@ -44,6 +44,6 @@ services:
         volumes:
             - ./model-service:/usr/src/app
         ports:
-            - 5003:8080
+            - 6000:8080
         environment:
             - PORT=8080

@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8080;
 const HOST = "0.0.0.0";
 const indeed_host = process.env.INDEED || "http://indeed-service:8080";
 const linkedin_host = process.env.LINKEDIN || "http://linkedin-service:8080";
+const monster_host = process.env.MONSTER || "http://monster-service:8080";
 const model_host = process.env.MODEL || "http://model-service:8080";
 const app = express();
 
@@ -25,6 +26,8 @@ app.get("/keywords/:url/:num_words", cors(), async (req, clientRes) => {
         scraper_url = indeed_host + "/job/" + url;
     } else if (decoded_url.includes("linkedin.")) {
         scraper_url = linkedin_host + "/job/" + url;
+    } else if (decoded_url.includes("monster.")) {
+        scraper_url = monster_host + "/job/" + url;
     }
 
     if (scraper_url == null) {
