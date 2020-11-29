@@ -41,35 +41,30 @@ function newTab(url) {
 
 function ExampleLinks({ setFieldValue }) {
   return (
-		<div>
-			<Text
-				opacity={0.7}
-				fontSize={{ base: "lg", lg: "xl" }}
-				mt="10"
-				mb="0"
-			>
-				Example Links:
-			</Text>
-			<SimpleGrid style={styles.buttonGrid} columns={{ sm: 3 }}>
-				{exampleButtons.map((button, index) => (
-					<div style={styles.buttonContainer}>
-						<Button
-							key={index}
-							colorScheme="blue"
-							style={{ minWidth: buttonWidth }}
-							disabled={!button.link}
-							onClick={() => {
-								setFieldValue("url", button.link);
-								newTab(button.link);
-							}}
-						>
-							<button.logo mx="1vw" />
-							{"\u00A0"} {button.name}
-						</Button>
-					</div>
-				))}
-			</SimpleGrid>
-		</div>
+    <div>
+      <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="10" mb="0">
+        Example Links:
+      </Text>
+      <SimpleGrid style={styles.buttonGrid} columns={{ sm: 3 }}>
+        {exampleButtons.map((button, index) => (
+          <div style={styles.buttonContainer} key={index}>
+            <Button
+              key={`btn-${index}`}
+              colorScheme="blue"
+              style={{ minWidth: buttonWidth }}
+              disabled={!button.link}
+              onClick={() => {
+                setFieldValue("url", button.link);
+                newTab(button.link);
+              }}
+            >
+              <button.logo mx="1vw" />
+              {"\u00A0"} {button.name}
+            </Button>
+          </div>
+        ))}
+      </SimpleGrid>
+    </div>
   );
 }
 

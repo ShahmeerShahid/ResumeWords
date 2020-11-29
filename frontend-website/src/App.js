@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, ChakraProvider } from "@chakra-ui/react";
 import { withFormik } from "formik";
-import { SnackbarProvider } from "notistack";
 import * as Yup from "yup";
 import { Header, Footer } from "./components/HeaderAndFooter";
 import ExampleLinks from "./components/ExampleLinks";
@@ -18,9 +17,7 @@ const ERR_MSGS = {
 };
 
 const Schema = Yup.object().shape({
-  url: Yup.string()
-    .url(ERR_MSGS.urlInvalid)
-    .required(ERR_MSGS.urlMissing),
+  url: Yup.string().url(ERR_MSGS.urlInvalid).required(ERR_MSGS.urlMissing),
   num_words: Yup.number().required(ERR_MSGS.numWordsMissing),
 });
 
@@ -39,11 +36,11 @@ function UnconnectedApp({ errors, handleSubmit, setFieldValue, values }) {
   }
 
   let styles = {
-		main: {
-			display: "flex",
-			justifyContent: "center",
-			width: "100vw",
-		},
+    main: {
+      display: "flex",
+      justifyContent: "center",
+      width: "100vw",
+    },
   };
 
   return (
@@ -98,7 +95,7 @@ export const EnhancedApp = withFormik({
         return res.json();
       })
       .then((data) => {
-        setFieldValue("asyncError", null)
+        setFieldValue("asyncError", null);
         setFieldValue("results", data);
       })
       .catch((e) => {
@@ -125,9 +122,7 @@ export const EnhancedApp = withFormik({
 function App() {
   return (
     <ChakraProvider>
-      <SnackbarProvider>
-        <EnhancedApp />
-      </SnackbarProvider>
+      <EnhancedApp />
     </ChakraProvider>
   );
 }
