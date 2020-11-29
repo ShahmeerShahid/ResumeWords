@@ -50,7 +50,6 @@ function ExampleLinks({ setFieldValue }) {
 			>
 				Example Links:
 			</Text>
-
 			<SimpleGrid style={styles.buttonGrid} columns={{ sm: 3 }}>
 				{exampleButtons.map((button, index) => (
 					<div style={styles.buttonContainer}>
