@@ -27,6 +27,7 @@ const Schema = Yup.object().shape({
 function UnconnectedApp({ errors, handleSubmit, setFieldValue, values }) {
   const url = values.url;
   const num_words = values.num_words;
+  const asyncError = values.asyncError;
 
   function validateURL() {
     try {
@@ -38,10 +39,11 @@ function UnconnectedApp({ errors, handleSubmit, setFieldValue, values }) {
   }
 
   let styles = {
-    main: {
-      display: "flex",
-      justifyContent: "center",
-    },
+		main: {
+			display: "flex",
+			justifyContent: "center",
+			width: "100vw",
+		},
   };
 
   return (
@@ -68,6 +70,7 @@ function UnconnectedApp({ errors, handleSubmit, setFieldValue, values }) {
               handleSubmit={handleSubmit}
               setFieldValue={setFieldValue}
               validateURL={validateURL}
+              asyncError={asyncError}
             />
             <ExampleLinks setFieldValue={setFieldValue} />
             <ResultsList results={values.results} />
@@ -86,15 +89,21 @@ export const EnhancedApp = withFormik({
     var encoded_url = encodeURIComponent(url);
     const request = `/keywords/${encoded_url}/${num_words}`;
     fetch(APIgateway + request) // APIgateway + request
-      .then((res) => {
+      .then(async (res) => {
+        if (res.status !== 200) {
+          const message = await res.text();
+          throw new Error(message);
+        }
         setFieldValue("isLoading", false);
         return res.json();
       })
       .then((data) => {
+        setFieldValue("asyncError", null)
         setFieldValue("results", data);
       })
       .catch((e) => {
         setFieldValue("isLoading", false);
+        setFieldValue("asyncError", e.message);
         return {
           error: true,
           status: e.response && e.response.status,
