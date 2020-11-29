@@ -2,12 +2,11 @@ import React from "react";
 import { Box, Container, ChakraProvider } from "@chakra-ui/react";
 import { withFormik } from "formik";
 import { SnackbarProvider } from "notistack";
-//import { useAsync } from "react-async";
 import * as Yup from "yup";
 import { Header, Footer } from "./components/HeaderAndFooter";
 import ExampleLinks from "./components/ExampleLinks";
 import UserInput from "./components/UserInput";
-//import { getResults } from "./requests";
+import { getResults } from "./requests";
 import "./App.css";
 
 const ERR_MSGS = {
@@ -40,7 +39,6 @@ function UnconnectedApp({
       Schema.validateSyncAt("url", { url: url });
       return true;
     } catch (e) {
-      console.log(e);
       return false;
     }
   }
@@ -78,11 +76,9 @@ function UnconnectedApp({
 
 export const EnhancedApp = withFormik({
   enableReinitialize: true,
-  handleSubmit: ({ url, num_words }) => {
-    console.log({
-      url,
-      num_words,
-    });
+  handleSubmit: async ({ url, num_words }) => {
+    const response = await getResults(url, num_words);
+    console.log(response);
   },
   mapPropsToValues: (props) => ({
     url: "",

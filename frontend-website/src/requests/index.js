@@ -1,10 +1,10 @@
 const APIgateway = "https://gateway-service-fvwxmbq4sq-ue.a.run.app";
 
-export function getResults(url) {
+export async function getResults(url, num_words) {
   var encoded_url = encodeURIComponent(url);
-  const request = "/keywords/" + encoded_url + "/50";
+  const request = `/keywords/${encoded_url}/${num_words}`;
   try {
-    const response = fetch(APIgateway + request);
+    const response = await fetch(APIgateway + request);
     return response.data;
   } catch (e) {
     return {
