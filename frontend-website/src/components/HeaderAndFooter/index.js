@@ -28,8 +28,13 @@ export function Header() {
       </chakra.h1>
       <Divider />
       <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="6">
-        Paste URL below, click "Submit" and wait for your results. Make sure to
-        include those words in your resume or cover letter!
+        ResumeWords analyzes job descriptions using machine learning & informs
+        you of keywords you should include in your resume or cover letter when
+        applying!
+      </Text>
+      <Text opacity={0.7} fontSize={{ base: "lg", lg: "xl" }} mt="6">
+        Paste the URL below, click "Submit", and wait for the results. Make sure
+        to include those words in your resume or cover letter!
       </Text>
     </>
   );

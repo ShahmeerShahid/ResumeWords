@@ -41,6 +41,7 @@ function UserInput({
       <FormLabel>URL:</FormLabel>
       <InputGroup size="lg">
         <Input
+          aria-label="URL"
           pr="6rem"
           placeholder="Link to job posting"
           value={url}
@@ -56,19 +57,21 @@ function UserInput({
       <FormLabel># of keywords:</FormLabel>
       <Stack mt={4} direction="row" spacing="12px" justify="center">
         <NumberInput
+          aria-label="number of keywords"
           width="75%"
           min={0}
           max={50}
           value={num_words}
           onChange={(value) => setFieldValue("num_words", value)}
         >
-          <NumberInputField />
+          <NumberInputField aria-label="keyword-num-input" />
           <NumberInputStepper>
             <NumberIncrementStepper />
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
         <Button
+          aria-label="submit button"
           colorScheme="green"
           width="25%"
           onClick={handleSubmit}

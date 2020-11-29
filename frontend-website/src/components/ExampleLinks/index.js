@@ -59,7 +59,7 @@ function ExampleLinks({ setFieldValue }) {
                 newTab(button.link);
               }}
             >
-              <button.logo /> {button.name}
+              <button.logo />&nbsp;{button.name}
             </Button>
           </div>
         ))}

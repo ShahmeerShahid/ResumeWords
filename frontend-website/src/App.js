@@ -18,7 +18,18 @@ const ERR_MSGS = {
 };
 
 const Schema = Yup.object().shape({
-  url: Yup.string().url(ERR_MSGS.urlInvalid).required(ERR_MSGS.urlMissing),
+  url: Yup.string()
+    .url(ERR_MSGS.urlInvalid)
+    .required(ERR_MSGS.urlMissing)
+    .test(
+      "supported job portal",
+      "ResumeWords only supports LinkedIn, Indeed, & Monster",
+      (val) => {
+        const arr = val.split("/");
+        const site = arr[2];
+        return site.includes("indeed") || site.includes("linkedin") || site.includes("monster");
+      }
+    ),
   num_words: Yup.number().required(ERR_MSGS.numWordsMissing),
 });
 
@@ -31,7 +42,6 @@ function UnconnectedApp({ errors, handleSubmit, setFieldValue, values }) {
       Schema.validateSyncAt("url", { url: url });
       return true;
     } catch (e) {
-      console.log(e);
       return false;
     }
   }
