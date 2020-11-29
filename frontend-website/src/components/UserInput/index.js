@@ -42,7 +42,7 @@ function UserInput({
       <InputGroup size="lg">
         <Input
           pr="6rem"
-          placeholder="http://linkedin.com"
+          placeholder="Link to job posting"
           value={url}
           onChange={(e) => setFieldValue("url", e.target.value)}
         />
@@ -52,6 +52,7 @@ function UserInput({
           children={renderURLValidationIcon()}
         />
       </InputGroup>
+      <br></br>
       <FormLabel># of keywords:</FormLabel>
       <Stack mt={4} direction="row" spacing="12px" justify="center">
         <NumberInput
@@ -69,8 +70,8 @@ function UserInput({
         </NumberInput>
         <Button
           colorScheme="green"
+          width="25%"
           onClick={handleSubmit}
-          w="25%"
           disabled={isLoading}
         >
           {!isLoading ? "Submit" : <Spinner size="md" />}

@@ -46,8 +46,7 @@ export function Footer() {
 
   return (
     <>
-      <Box as="footer" mt={12} textAlign="center" className="app">
-        <Divider />
+      <Box as="footer" mt={12} height="100%" textAlign="center" className="app">
         <Text fontSize="sm">
           Made with{" "}
           <span aria-label="heart" role="img">
@@ -58,7 +57,10 @@ export function Footer() {
             Shahmeer Shahid
           </Link>
           ,{" "}
-          <Link href="https://github.com/llolic" isExternal>
+          <Link
+            href="https://www.linkedin.com/in/lazar-lolic-207779184/"
+            isExternal
+          >
             Lazar Lolic
           </Link>
           , &{" "}
@@ -66,7 +68,7 @@ export function Footer() {
             Jarrod Servilla
           </Link>
         </Text>
-        <Stack mt={4} direction="row" spacing="12px" justify="center">
+        <Stack mt={4} direction="row" spacing="12px" justify="center" mb={10}>
           {links.map((link, index) => {
             return (
               <Link

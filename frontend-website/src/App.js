@@ -22,58 +22,58 @@ const Schema = Yup.object().shape({
   num_words: Yup.number().required(ERR_MSGS.numWordsMissing),
 });
 
-function UnconnectedApp({
-  enqueueSnackBar,
-  errors,
-  handleSubmit,
-  setFieldValue,
-  values,
-}) {
+function UnconnectedApp({ errors, handleSubmit, setFieldValue, values }) {
   const url = values.url;
   const num_words = values.num_words;
-  /*
-  const { execute, status, value, error } = useAsync(getResults, {
-    url: url,
-  });*/
 
   function validateURL() {
     try {
       Schema.validateSyncAt("url", { url: url });
       return true;
     } catch (e) {
+      console.log(e);
       return false;
     }
   }
 
+  let styles = {
+    main: {
+      display: "flex",
+      justifyContent: "center",
+    },
+  };
+
   return (
     <>
-      <center>
-        <Box>
+      <Container as="div" style={styles.main}>
+        <Box
+          as="section"
+          pt={{ base: "4rem", md: "6rem" }}
+          pb={{ base: "0", md: "5rem" }}
+          width="100vw"
+        >
           <Box
-            as="section"
-            pt={{ base: "4rem", md: "6rem" }}
-            pb={{ base: "0", md: "5rem" }}
+            textAlign="center"
+            display="flex"
+            flexDirection="column"
+            id="centerBox"
           >
-            <Container d="flex" justifyContent="center">
-              <Box maxW="760px" mx="auto" textAlign="center">
-                <Header />
-                <UserInput
-                  url={url}
-                  num_words={num_words}
-                  isLoading={values.isLoading}
-                  errors={errors}
-                  handleSubmit={handleSubmit}
-                  setFieldValue={setFieldValue}
-                  validateURL={validateURL}
-                />
-                <ResultsList results={values.results} />
-                <ExampleLinks setFieldValue={setFieldValue} />
-                <Footer />
-              </Box>
-            </Container>
+            <Header />
+            <UserInput
+              url={url}
+              num_words={num_words}
+              isLoading={values.isLoading}
+              errors={errors}
+              handleSubmit={handleSubmit}
+              setFieldValue={setFieldValue}
+              validateURL={validateURL}
+            />
+            <ExampleLinks setFieldValue={setFieldValue} />
+            <ResultsList results={values.results} />
+            <Footer />
           </Box>
         </Box>
-      </center>
+      </Container>
     </>
   );
 }
@@ -103,7 +103,7 @@ export const EnhancedApp = withFormik({
   },
   mapPropsToValues: (props) => ({
     url: "",
-    num_words: 0,
+    num_words: 10,
     results: [],
     isLoading: false,
   }),
