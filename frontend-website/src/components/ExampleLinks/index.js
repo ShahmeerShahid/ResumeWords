@@ -9,19 +9,19 @@ const exampleButtons = [
   {
     name: "LinkedIn",
     logo: AiFillLinkedin,
-    link: "https://www.linkedin.com/jobs/view/2255261986",
+    link: "https://www.linkedin.com/jobs/view/2327029829",
   },
   {
     name: "Indeed",
     logo: SiIndeed,
     link:
-      "https://ca.indeed.com/viewjob?jk=0573fd7c2855c8e3&tk=1eo98g5too2f6800&from=serp&vjs=3",
+      "https://ca.indeed.com/viewjob?jk=fa472aa5b56a5cca&tk=1eo98g5too2f6800&from=serp&vjs=3",
   },
   {
     name: "Monster",
     logo: SiMonster,
     link:
-      "https://job-openings.monster.ca/sr-finanial-analyst-langley-bc-ca-thomson-technology/221727383",
+      "https://www.monster.ca/jobs/search/?q=DevOps-Engineer&where=Toronto__2C-ON&jobid=222093381",
   },
 ];
 
