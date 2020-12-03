@@ -17,11 +17,21 @@ class JobData(Resource):
         GET job title and job data of supplied LinkedIn job page
         '''
         
-        print('LinkedIn service received encoded URL: ' + url)
+        print('LinkedIn service received encoded URL: ' + url, flush=True)
         decoded_url = unquote(url)
-        print('Decoded URL: ' + decoded_url)
-        r = requests.get(decoded_url)
-        soup = BeautifulSoup(r.content, "html.parser")
+        print('Decoded URL: ' + decoded_url, flush=True)
+        parsed_url = urlparse.urlparse(decoded_url)
+        url_params = parse_qs(parsed_url.query)
+
+        if "currentJobId" in url_params:
+            currentJobId = url_params["currentJobId"][0]
+            url = "https://www.linkedin.com/jobs/view/" + currentJobId
+        else:
+            url = decoded_url
+        print("URL: " + url, flush=True)
+
+        r = requests.get(url).content
+        soup = BeautifulSoup(r, "html.parser")
 
         # Check if both job description and job title exist in page
         if not soup.find("h1", {"class":"topcard__title"}) or not soup.find("div", {"class":"description__text description__text--rich"}):
