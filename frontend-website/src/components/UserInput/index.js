@@ -66,6 +66,7 @@ function UserInput({
           children={renderURLValidationIcon()}
         />
       </InputGroup>
+      <Text style={{ color: "red" }}>{errors && errors.url}</Text>
       <br></br>
       <FormLabel># of keywords:</FormLabel>
       <Stack mt={4} direction="row" spacing="12px" justify="center">
@@ -92,8 +93,8 @@ function UserInput({
         >
           {!isLoading ? "Submit" : <Spinner size="md" />}
         </Button>
+        <Text style={{ color: "red" }}>{errors && errors.num_words}</Text>
       </Stack>
-      <Text style={{ color: "red" }}>{errors && errors.url}</Text>
     </div>
   );
 }

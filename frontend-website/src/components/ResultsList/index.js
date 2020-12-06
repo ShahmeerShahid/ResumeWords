@@ -1,10 +1,12 @@
 import React from "react";
 import {
+  Box,
   Stack,
   Stat,
   StatLabel,
   StatNumber,
   StatGroup,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -62,7 +64,23 @@ function renderResults(results) {
 }
 
 function ResultsList({ results }) {
-  return <>{results !== {} && renderResults(results)}</>;
+  return (
+    <>
+      {results.length !== 0 && (
+         <Box p={5} shadow="md" borderWidth="1px">
+          <Text opacity={0.8} fontSize={{ base: "lg", lg: "xl" }} mt="1">
+            By comparing your posting to 20 000+ other job postings, we identified these key words as being highly
+            desired. 
+          </Text>
+          <Text opacity={0.8} fontSize={{ base: "lg", lg: "xl" }} mt="1">
+          The scores are a measure of how frequently a keyword was used in the provided job posting compared to its typical frequency.
+          </Text>
+          </Box>
+      )}
+
+      {results.length !== 0 && renderResults(results)}
+    </>
+  );
 }
 
 export default ResultsList;

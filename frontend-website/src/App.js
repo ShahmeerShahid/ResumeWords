@@ -16,8 +16,16 @@ const ERR_MSGS = {
   urlInvalid: "Invalid URL format",
 };
 
+const supportedSites = ["linkedin", "indeed", "monster"];
+
 const Schema = Yup.object().shape({
-  url: Yup.string().url(ERR_MSGS.urlInvalid).required(ERR_MSGS.urlMissing),
+  url: Yup.string()
+    .url(ERR_MSGS.urlInvalid)
+    .required(ERR_MSGS.urlMissing)
+    .test("supportedSite", "Domain is not supported", (value, context) => {
+      const domain = value.split(".")[1].toLowerCase();
+      return supportedSites.includes(domain);
+    }),
   num_words: Yup.number().required(ERR_MSGS.numWordsMissing),
 });
 
