@@ -118,7 +118,7 @@ export const EnhancedApp = withFormik({
   },
   mapPropsToValues: (props) => ({
     url: "",
-    num_words: 10,
+    num_words: 20,
     results: [],
     isLoading: false,
   }),
