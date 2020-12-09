@@ -22,3 +22,14 @@ A list of keywords and their corresponding TF/IDF scores:
 - `400 Bad Request` if URL not supported
 - `401 Unauthorized` on bad API key
 - `500 Internal Server Error` on internal error
+
+
+### Ping
+
+Wakes up the gateway service and pings the model service
+
+**Definition**
+`GET /ping`
+
+**Response**
+- `200 OK` on success

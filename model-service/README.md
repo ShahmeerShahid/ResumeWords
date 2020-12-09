@@ -27,3 +27,14 @@ A JSON object with word/TF-IDF key/value pairs
 }
 ```
 - `500 Internal Server Error` if model fails
+
+
+### Ping
+
+Wakes up the model service
+
+**Definition**
+`GET /ping`
+
+**Response**
+- `200 OK` on success

@@ -9,6 +9,10 @@ CORS(app)
 api = Api(app)
 PORT = int(os.getenv('PORT', '8080'))
 
+@app.route('/ping')
+def ping():
+    return "Pinged", 200
+
 def reqParser(parser, args):
     for i in range(len(args)):
         parser.add_argument(args[i], required=True, location='json')

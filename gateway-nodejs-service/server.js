@@ -14,6 +14,12 @@ app.get("/", function (req, res) {
     res.send("Hello world!");
 });
 
+app.get("/ping", cors(), async (req, res) => {
+    fetch(model_host + "/ping");
+    res.status(200).send();
+    return;
+});
+
 app.get("/keywords/:url/:num_words", cors(), async (req, clientRes) => {
     const decoded_url = req.params.url;
     const url = encodeURIComponent(decoded_url);
