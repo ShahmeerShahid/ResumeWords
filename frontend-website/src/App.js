@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Container, ChakraProvider } from "@chakra-ui/react";
 import { withFormik } from "formik";
 import * as Yup from "yup";
@@ -128,6 +128,9 @@ export const EnhancedApp = withFormik({
 })(UnconnectedApp);
 
 function App() {
+  useEffect(() => { 
+    fetch(APIgateway + "/ping");
+  }, [])
   return (
     <ChakraProvider>
       <EnhancedApp />
