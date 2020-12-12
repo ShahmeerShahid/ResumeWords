@@ -50,6 +50,7 @@ function UserInput({
       setFieldValue("asyncError", null);
     }
   }, [asyncError, setFieldValue, toast]);
+
   return (
     <div style={{ paddingTop: "2vw" }}>
       <FormLabel>URL:</FormLabel>
@@ -60,11 +61,15 @@ function UserInput({
           value={url}
           onChange={(e) => setFieldValue("url", e.target.value)}
         />
-        <InputRightElement
-          style={{ paddingLeft: "7vw" }}
-          width="7rem"
-          children={renderURLValidationIcon()}
-        />
+        {!validateURL() ? (
+          <InputRightElement
+            onClick={() => {
+              setFieldValue("url", "");
+            }}
+            style={{ cursor: "pointer" }}
+            children={renderURLValidationIcon()}
+          />
+        ) : null}
       </InputGroup>
       <Text style={{ color: "red" }}>{errors && errors.url}</Text>
       <br></br>
