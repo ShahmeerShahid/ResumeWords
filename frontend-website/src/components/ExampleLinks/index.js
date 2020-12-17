@@ -9,7 +9,7 @@ const exampleButtons = [
   {
     name: "LinkedIn",
     logo: AiFillLinkedin,
-    link: "https://www.linkedin.com/jobs/view/2327029829",
+    link: "https://www.linkedin.com/jobs/search/?currentJobId=2299377018&pivotType=jymbii",
   },
   {
     name: "Indeed",
@@ -21,7 +21,7 @@ const exampleButtons = [
     name: "Monster",
     logo: SiMonster,
     link:
-      "https://www.monster.ca/jobs/search/?q=DevOps-Engineer&where=Toronto__2C-ON&jobid=222093381",
+      "https://www.monster.ca/jobs/search?q=Software-Engineer&where=Toronto__2C-ON&intcid=skr_navigation_nhpso_searchMain&jobid=222764401",
   },
 ];
 
