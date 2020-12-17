@@ -1,6 +1,6 @@
 {
-  "short_name": "ResumeWords",
-  "name": "ResumeWords - Keyword extraction",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,14 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo.png",
+      "src": "logo192.png",
       "type": "image/png",
-      "sizes": "1307x279"
+      "sizes": "192x192"
     },
     {
-      "src": "logo2.png",
+      "src": "logo512.png",
       "type": "image/png",
-      "sizes": "1200x628"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
