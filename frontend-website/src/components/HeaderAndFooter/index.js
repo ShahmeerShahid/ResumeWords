@@ -39,6 +39,7 @@ export function Header() {
         </Text>
         <Text opacity={0.8} fontSize={{ base: "lg", lg: "xl" }} mt="6">
           Paste the URL below, click "Submit", and wait for the results!
+          Currently we only support LinkedIn, Indeed, and Monster.
         </Text>
       </Box>
     </>

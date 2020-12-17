@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo2.png" />
-    <!--
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo2.png" />
+		<!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+		<!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -20,45 +20,48 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <!-- Primary Meta Tags -->
-    <title>ResumeWords - AI powered keyword extraction</title>
-    <meta name="title" content="ResumeWords - AI powered keyword extraction" />
-    <meta
-      name="description"
-      content="Nail your resume and cover letter by leveraging AI and NLP to extract keywords from online job postings."
-    />
+		<!-- Primary Meta Tags -->
+		<title>ResumeWords - AI powered keyword extraction</title>
+		<meta
+			name="title"
+			content="ResumeWords - AI powered keyword extraction"
+		/>
+		<meta
+			name="description"
+			content="Nail your resume and cover letter by leveraging AI and NLP to extract keywords from online job postings."
+		/>
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://www.resume-words.com/" />
-    <meta
-      property="og:title"
-      content="ResumeWords - AI powered keyword extraction"
-    />
-    <meta
-      property="og:description"
-      content="Nail your resume and cover letter by leveraging AI and NLP to extract keywords from online job postings."
-    />
-    <meta property="og:image" content="%PUBLIC_URL%/logo2.png" />
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://www.resume-words.com/" />
+		<meta
+			property="og:title"
+			content="ResumeWords - AI powered keyword extraction"
+		/>
+		<meta
+			property="og:description"
+			content="Nail your resume and cover letter by leveraging AI and NLP to extract keywords from online job postings."
+		/>
+		<meta property="og:image" content="%PUBLIC_URL%/logo2.png" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="http://www.resume-words.com/" />
-    <meta
-      property="twitter:title"
-      content="ResumeWords - AI powered keyword extraction"
-    />
-    <meta
-      property="twitter:description"
-      content="Nail your resume and cover letter by leveraging AI and NLP to extract keywords from online job postings."
-    />
-    <meta property="twitter:image" content="%PUBLIC_URL%/logo2.png" />
-  </head>
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="http://www.resume-words.com/" />
+		<meta
+			property="twitter:title"
+			content="ResumeWords - AI powered keyword extraction"
+		/>
+		<meta
+			property="twitter:description"
+			content="Nail your resume and cover letter by leveraging AI and NLP to extract keywords from online job postings."
+		/>
+		<meta property="twitter:image" content="%PUBLIC_URL%/logo2.png" />
+	</head>
 
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+	<body>
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<div id="root"></div>
+		<!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -68,5 +71,30 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-analytics.js"></script>
+
+		<script>
+			// Your web app's Firebase configuration
+			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			var firebaseConfig = {
+				apiKey: "AIzaSyBUMZurigrykVWqRXswJP3VUTwTk0HFOUM",
+				authDomain: "resumewords.firebaseapp.com",
+				databaseURL: "https://resumewords.firebaseio.com",
+				projectId: "resumewords",
+				storageBucket: "resumewords.appspot.com",
+				messagingSenderId: "798075290594",
+				appId: "1:798075290594:web:49a71df80091d8cc3bafbb",
+				measurementId: "G-NV2H058HZX",
+			};
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+			firebase.analytics();
+		</script>
+	</body>
 </html>
