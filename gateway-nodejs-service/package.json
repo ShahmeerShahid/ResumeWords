@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "express": "^4.16.1",
-    "node-fetch": "2.6.1",
+    "node-fetch": "2.6.7",
     "cors": "2.8.5"
   },
   "devDependencies": {
