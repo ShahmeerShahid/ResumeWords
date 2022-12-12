@@ -9,7 +9,7 @@
     "dev": "nodemon index"
   },
   "dependencies": {
-    "express": "^4.16.1",
+    "express": "^4.17.3",
     "node-fetch": "2.6.1",
     "cors": "2.8.5"
   },
